@@ -10,18 +10,15 @@
 
 #Solution :
 
-#Approach 1:
 
+function Get-NestedValue{
 [CmdletBinding()]
 param(
     [Parameter(Mandatory=$true)]
-    [Hashtable]$Object,
+    [object]$Object,
     [Parameter(Mandatory=$true)]
     [string]$key
 )
-
-function Get-NestedValue{
-
     $keys  = $key -split '/'
     $value = $Object
 
@@ -35,4 +32,18 @@ function Get-NestedValue{
 
 #You can run Get-NestedValue -key $key -Object $Object in the cmdlet to execute the above code .
 
+#Example Usage 
 
+# $obj = @{
+#     a = @{
+#         b = @{
+#             c = "d"
+#         } 
+#     }
+# }
+
+# $key ="a/b/c"
+
+# $value = Get-NestedValue -Object $obj -Key $key
+
+# Write-Output $value
