@@ -26,7 +26,7 @@ function Get-NestedValue{
     $value = $Object
 
     foreach($k in $keys){
-        $value = $value.$key
+        $value = $value.$k
     }
 
     return $value
