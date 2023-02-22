@@ -26,11 +26,7 @@ function Get-NestedValue{
     $value = $Object
 
     foreach($k in $keys){
-        $value = $value[$k]
-        if($value -eq $null)
-        {
-            return $null
-        }
+        $value = $value.$key
     }
 
     return $value
@@ -40,19 +36,3 @@ function Get-NestedValue{
 #You can run Get-NestedValue -key $key -Object $Object in the cmdlet to execute the above code .
 
 
-#Approach 2:
-
-#We can use Select-Object cmdlet to retrieve the value of an object.
-# Select object can be used to retrieve the value from a nested object .
-
-$Object = @{
-    a = @{
-        b = @{
-            c = "d"
-        }
-    }
-}
-
-$key = "a/b/c"
-
-$value = ($Object | Select-Object ($key -split "/")).($key -split "/")[-1]
